@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkTesting : MonoBehaviour
+public class NetworkTesting : NetworkBehaviour
 {
     [SerializeField] private NetworkObject playerPrefab;
 
     private void Start()
     {
+        if (!IsServer) return;
+
         NetworkManager.Singleton.OnClientConnectedCallback += Singleton_OnClientConnectedCallback;
 
         foreach (var client in NetworkManager.Singleton.ConnectedClients)
@@ -17,8 +19,10 @@ public class NetworkTesting : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
+        if (!IsServer) return;
+
         NetworkManager.Singleton.OnClientConnectedCallback -= Singleton_OnClientConnectedCallback;
     }
 
