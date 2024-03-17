@@ -15,7 +15,7 @@ public class NetworkTesting : NetworkBehaviour
 
         foreach (var client in NetworkManager.Singleton.ConnectedClients)
         {
-            NetworkManager.Singleton.SpawnManager.InstantiateAndSpawn(playerPrefab, client.Key, true);
+            NetworkManager.Singleton.SpawnManager.InstantiateAndSpawn(playerPrefab, client.Key, true, true);
         }
     }
 

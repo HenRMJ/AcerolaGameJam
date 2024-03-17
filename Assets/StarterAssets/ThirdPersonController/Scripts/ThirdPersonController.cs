@@ -144,6 +144,7 @@ namespace StarterAssets
             {
                 _playerInput.enabled = true;
                 virtualCameraObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
             }
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
